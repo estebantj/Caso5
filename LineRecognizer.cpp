@@ -65,7 +65,7 @@ void LineRecognizer::ordenarSectores(std::vector<std::array<int,4>> pLineas)
 			
 		}
 		else {
-			int dif = encontrarRangoX(linea[0], linea[2], rangosX);
+			int dif = encontrarRangoX(linea[0], linea[2], rangosX); 
 
 			if (dif < 4) {
 				aumentarProbabilidad(dif);
@@ -80,7 +80,7 @@ void LineRecognizer::ordenarSectores(std::vector<std::array<int,4>> pLineas)
 
 void LineRecognizer::aumentarProbabilidad(int dif)
 {
-	//Relevo tengo sueno
+	//Relevo tengo sueno aca tomando en cuenta que es diferente para cada numrro
 }
 
 void LineRecognizer::disminuirProbabilidad(int dif)
