@@ -1,6 +1,0 @@
-﻿  LineRecognizer.cpp
-C:\Users\mikom\Desktop\Analisis de Algoritmos\Caso5\ConsoleApplication1\LineRecognizer.cpp(51,34): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Sector.cpp
-  Generating Code...
-  ConsoleApplication1.vcxproj -> C:\Users\mikom\Desktop\Analisis de Algoritmos\Caso5\ConsoleApplication1\Debug\Caso5.exe
