@@ -129,18 +129,21 @@ void LineRecognizer::analizarLineas(std::vector<std::array<int,4>> pLineas)
 	}
 }
 
+// TODO factorizar codigo
+
 void LineRecognizer::aumentarProbabilidad(int dif, bool pEsVertical)
 {
 	//Relevo tengo sueno aca tomando en cuenta que es diferente para cada numrro
 	int contador = 0;
-	if (dif < 2)
+	if (dif < 2) // if (sumarProba && dif < 2 || !sumarProba < 7)
 	{
 		for (auto it : modificadoresDeProbabilidad)
 		{
 			std::unordered_map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
-			int proba = pEsVertical ? it.second.first : it.second.second;
-			proba -= (dif*0.5);
-			itProba->second += proba ;
+			int valorDeCambio = pEsVertical ? it.second.first : it.second.second;
+			valorDeCambio -= (dif*0.5);
+			itProba->second += valorDeCambio;
+			if (itProba->second > 100) itProba->second = 100;
 			contador++;
 			
 		}
@@ -150,9 +153,10 @@ void LineRecognizer::aumentarProbabilidad(int dif, bool pEsVertical)
 		for (auto it : modificadoresDeProbabilidad)
 		{
 			std::unordered_map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
-			int proba = pEsVertical ? it.second.first : it.second.second;
-			proba = (proba/2) - (dif * 0.5);
-			itProba->second = proba;
+			int valorDeCambio = pEsVertical ? it.second.first : it.second.second;
+			valorDeCambio = (valorDeCambio /2) - (dif * 0.5);
+			itProba->second += valorDeCambio;
+			if (itProba->second > 100) itProba->second = 100;
 			contador++;
 
 		}
@@ -167,9 +171,10 @@ void LineRecognizer::disminuirProbabilidad(int dif, bool pEsVertical)
 		for (auto it : modificadoresDeProbabilidad)
 		{
 			std::unordered_map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
-			int proba = pEsVertical ? it.second.first : it.second.second;
-			proba += (dif * 0.5);
-			itProba->second = proba;
+			int valorDeCambio = pEsVertical ? it.second.first : it.second.second;
+			valorDeCambio += (dif * 0.5) / (itProba->second / 10);
+			itProba->second -= valorDeCambio;
+			if (itProba->second < 0) itProba->second = 0;
 			contador++;
 
 		}
@@ -179,9 +184,10 @@ void LineRecognizer::disminuirProbabilidad(int dif, bool pEsVertical)
 		for (auto it : modificadoresDeProbabilidad)
 		{
 			std::unordered_map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
-			int proba = pEsVertical ? it.second.first : it.second.second;
-			proba = (proba / 2) + (dif * 0.5);
-			itProba->second = proba;
+			int valorDeCambio = pEsVertical ? it.second.first : it.second.second;
+			valorDeCambio = ((valorDeCambio / 2) + (dif * 0.5)) / (itProba->second / 10);
+			itProba->second -= valorDeCambio;
+			if (itProba->second < 0) itProba->second = 0;
 			contador++;
 
 		}
