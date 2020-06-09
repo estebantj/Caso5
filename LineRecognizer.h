@@ -1,14 +1,14 @@
 #pragma once
 #include <array>
-#include "Sector.h"
 #include "Variables.h"
 #include <unordered_map>
+#include <map>
 #include <iostream>
 
 class LineRecognizer
 {
 private:
-	std::unordered_map<int,int> probabilidadesPorNumero;
+	std::map<int,int> probabilidadesPorNumero;
 	std::unordered_map<int, std::pair<int,int> > modificadoresDeProbabilidad;
 
 	void actualizarProbabilidad(int dif, bool pEsVertical, bool sumarProba);
