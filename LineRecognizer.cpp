@@ -151,7 +151,7 @@ void LineRecognizer::actualizarProbabilidad(int dif, bool pEsVertical, bool suma
 	bool inclinacionModerada = sumarProba && dif < 2 || !sumarProba && dif < 7;
 	for (auto it : modificadoresDeProbabilidad) // Se va a iterar sobre cada numero para actualizar su probabilidad
 	{
-		std::unordered_map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
+		std::map<int, int>::iterator itProba = probabilidadesPorNumero.find(contador);
 		int valorDeCambio = pEsVertical ? it.second.first : it.second.second;
 		if (inclinacionModerada)
 		{
